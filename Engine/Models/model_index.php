@@ -7,7 +7,7 @@ class model_index
 		if (isset($_GET['fname']) && isset($_GET['femail']) && isset($_GET['fphone'])) {
 			mailmsg();
 		} else {
-			echo "Данные не пришли!	";
+			echo "Данные не пришли проверка комита!	";
 		}
 	}
 
