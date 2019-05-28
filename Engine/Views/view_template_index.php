@@ -37,5 +37,6 @@
 </div>
 <script src="<?php echo MAIN_JS_PATH; ?>jquery-3.4.0.js"></script>
 <script src="<?php echo MAIN_JS_PATH; ?>index.js"></script>
+<script src="<?php echo MAIN_JS_PATH; ?>form_order.js"></script>
 </body>
 </html>

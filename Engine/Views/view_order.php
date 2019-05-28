@@ -19,13 +19,13 @@
 		<input name="email" type="text" placeholder="name@site.ru">
 
 		<label for="">Наименование детали *</label>
-		<input type="text">
+		<input id="detailname" type="text">
 		<p>укажите название опоры, например: пятак</p>
 		<label for="">Количество *</label>
-		<input type="number">
+		<input id="detailcol" type="number">
 		<p>Укажите количество одинаковых деталей</p>
 		<label for="">Описание</label>
-		<textarea name="textarea" id="" cols="30" rows="10"></textarea>
+		<textarea name="textarea" id="detailarea" cols="30" rows="10"></textarea>
 		<p>Примерные габариты детали ДхШхВ см. Дополнительная информация особенности или пожелания, если есть.</p>
 		<input id="addImages" type="file" multiple="true">
 
@@ -39,6 +39,11 @@
 				</div>
 			</div>
 		</div>
+
+        <div class="detail">
+            <div class="new_detail">+</div>
+            <div class="delete_all_detail">-</div>
+        </div>
 		<!-- добавление элемента div -->
 		<div class="g-recaptcha" data-sitekey="6LcCB6MUAAAAAMpUO5WbyjWfpA5ZcDoZ6_jTOGgl"></div>
 		<!-- элемент для вывода ошибок -->
@@ -46,6 +51,6 @@
 		<!-- js-скрипт гугл капчи -->
 		<script src='https://www.google.com/recaptcha/api.js'></script>
 
-		<input id="enter_form" type="submit" placeholder="Отправить">
+		<input id="enter_form" type="button" placeholder="Отправить">
 	</form>
 </section>
