@@ -1,5 +1,6 @@
 $(document).ready(function () {
     var details = {element:[]};
+    var dann;
     var detailname;
     var detailcol;
     var detailarea;
@@ -10,10 +11,13 @@ $(document).ready(function () {
     });
 
     $('.new_detail').on('click', function () {
+        dann = $('.form_order').serializeArray();
+        console.log(dann);
+        console.log(detailimg);
         detailname = $('#detailname').val();
         detailcol = $('#detailcol').val();
         detailarea = $('#detailarea').val();
-        details.element.push({"detailname":detailname, "detailcol": detailcol, "detailarea" : detailarea, "Фото" : detailimg});
+        details.element.push({"detailname":detailname, "detailcol": detailcol, "detailarea" : detailarea, "picture" : detailimg});
         alert('Добавить');
         $('<div>', { id: 'new_detail' , text: 'Новая деталь'}).appendTo('.detail');
     });
@@ -23,7 +27,9 @@ $(document).ready(function () {
     });
 
     $('#enter_form').on('click', function () {
+        console.log(details);
         console.log("Нажата");
+        details = details.serialize();
         $.ajax({
             url: document.location.protocol + "//" + document.location.host + "/Engine/Models/mail.php",
             type: "POST",

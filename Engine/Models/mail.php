@@ -1,4 +1,8 @@
 <?php
-$json['error'] = 'Вы зaпoлнили нe всe пoля! oбмaнуть рeшили? =)'; // пишeм oшибку в мaссив
-echo json_encode($json); // вывoдим мaссив oтвeтa
+foreach ($_FILES as $v) {
+    echo "<pre>".$v.'<pre/><br>';
+}
+print_r($_FILES);
+
+
 ?>

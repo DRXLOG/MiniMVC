@@ -11,7 +11,7 @@ define('MAIN_MODEL_PATH', 'Engine'.DS.'Models'.DS);
 spl_autoload_register(function ($class) {
 	$path = SITE_PATH.DS.'Engine'.DS.'Core'.DS.$class.'.php';
 	if (file_exists($path)) {
-		include $path;
+        require_once $path;
 	} else {
 		throw new Exception("Файла не существует", 1);
 		

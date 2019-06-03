@@ -13,7 +13,7 @@ class View
 			extract($data);
 		}
 		*/
-		include SITE_PATH.DS.'Engine'.DS.'Views'.DS.$template_view.'.php';
+        require_once SITE_PATH.DS.'Engine'.DS.'Views'.DS.$template_view.'.php';
 	}
 }
 

@@ -61,7 +61,7 @@ class Route
 		$this->controller_file = $this->controller_name.'.php';
 		$this->controller_path = $this->controller_path.$this->controller_file;
 		if (file_exists($this->controller_path)) {
-			include $this->controller_path;
+            require_once $this->controller_path;
 		} else {
 			$this->error404();
 		}
@@ -69,10 +69,10 @@ class Route
 		$this->model_file = $this->model_name.'.php';
 		$this->model_path = $this->model_path.$this->model_file;
 		if (file_exists($this->model_path)) {
-			include $this->model_path;
-		}	
-
-		$controller = new $this->controller_name;
+		    $GLOBALS['model_name'] = $this->model_name;
+            require_once $this->model_path;
+		}
+		$controller = new $this->controller_name($this->model_name);
 		$action = $this->action_name;
 
 		if (method_exists($controller, $action)) {
