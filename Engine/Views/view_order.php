@@ -19,13 +19,13 @@
 		<input type="text" name="email"  placeholder="name@site.ru">
 
 		<label for="">Наименование детали *</label>
-		<input type="text" id="detailname" name="detail_name" >
+		<input type="text" id="detailname" name="" value="">
 		<p>укажите название опоры, например: пятак</p>
 		<label for="">Количество *</label>
-		<input type="number" id="detailcol" name="detail_col" >
+		<input type="number" id="detailcol" name="" >
 		<p>Укажите количество одинаковых деталей</p>
 		<label for="">Описание</label>
-		<textarea name="textarea" id="detailarea" cols="30" rows="10"></textarea>
+		<textarea name="" id="detailarea" cols="30" rows="10"></textarea>
 		<p>Примерные габариты детали ДхШхВ см. Дополнительная информация особенности или пожелания, если есть.</p>
 		<input type="file" name="pictures[]" id="addImages" multiple="true" >
 
