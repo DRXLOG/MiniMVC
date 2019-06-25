@@ -8,9 +8,11 @@ class model_order extends Model {
     }
 
     function get_data() {
-        print_r($_POST);
-        print_r($_FILES);
-        $this->sending_mail();
+        //print_r($_POST);
+        //print_r($_FILES);
+        if (isset($_POST['order'])) {
+            $this->sending_mail();
+        }
     }
 
     /**

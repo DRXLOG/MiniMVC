@@ -1,5 +1,6 @@
-<?php 
-error_reporting (E_ALL); 
+<?php
+xdebug_disable();
+//error_reporting (E_ALL);
 define ('DS', DIRECTORY_SEPARATOR);
 $sitePath = realpath(dirname(__FILE__) . DS);
 define ('SITE_PATH', $sitePath);

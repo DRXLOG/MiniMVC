@@ -1,68 +1,105 @@
 $(document).ready(function () {
-    var dann;
-    var detailname;
-    var detailcol;
-    var detailarea;
-    var detailimg;
-    var i = 0;
-    var filez;
-    var del_file = [];
-    var name_file = [];
+    var dropZone = $('#file_upload_label'); //Дропзона
+    var maxFileSize = 2000000; //2 мегабута
+    var ListingEl = [];
+
+    if (typeof(window.FileReader) == 'undefined') {
+        dropZone.text('Не поддерживается браузером!');
+        dropZone.addClass('error');
+    }
+
+    dropZone[0].ondragover = function() {
+        dropZone.addClass('hover');
+        return false;
+    };
+
+    dropZone[0].ondragleave = function() {
+        dropZone.removeClass('hover');
+        return false;
+    };
+
+    dropZone[0].ondrop = function(event) {
+        event.preventDefault();
+        dropZone.removeClass('hover');
+        dropZone.addClass('drop');
+        //dropZone.text('Файл норм!');
+        var files = event.dataTransfer.files;
+
+        if (files.size > maxFileSize) {
+            dropZone.text('Файл слишком большой!');
+            dropZone.addClass('error');
+            return false;
+        }
+        console.log(files);
+        //console.log(fileReader, file, url);
+        for (var i = 0; i < files.length; ++i) {
+            preview(files[i]);
+        }
+
+        //$('#uploadImagesList').append('<img src="' + images + '">');
+            //console.log("Filename: " + files.name);
+            //console.log("Type: " + files.type);
+            //console.log("Size: " + files.size + " bytes");
+            //console.log(files);
+            //console.log("Файлы Добавлены");
+
+    };
+    $('#addImages').on('change', function () {
+        var files = document.getElementById("addImages").files;
+        console.log(files);
+        //console.log(fileReader, file, url);
+        for (var i = 0; i < files.length; ++i) {
+            preview(files[i]);
+        }
+        console.log("Добавить деталь");
+    });
+
+    function addListingEl(id, name, number, description, fileList) {
+        for (var i = 0; i < ListingEl.length; ++i) {
+            if (ListingEl[i] == id) {
+                alert('Элемент с данным идентификатором присутствует');
+                return false;
+            } else {                        //РАЗОБРАТЬСЯ С ЭТИМ
+                ListingEl.push(id);
+                ListingEl[id] = [name, number, description, fileList];
+                return
+            }
+        }
+
+    }
+
+    function preview(file) {
+            var fileReader = new FileReader();
+            fileReader.onload = function() {
+                var url = fileReader.result;
+                // Something like: data:image/png;base64,iVBORw...Ym57Ad6m6uHj96js
+                console.log(url);
+                //
+                $('.prewiew_files_el').append('<div class="new_files_wrap_el" id="IMG'+ file.size +'f">');
+                $('#IMG' + file.size + 'f').append('<img src="' + url + '">');
+                //$('.new_files_el').append('</div>');
+            }
+            fileReader.readAsDataURL(file);
+    }
 
     $('.new_detail').on('click', function () {
-        detailname = $('#detailname').val();
-        detailcol = $('#detailcol').val();
-        detailarea = $('#detailarea').val();
-        console.log(detailname);
-        console.log(detailcol);
-        console.log(detailarea);
-        $('.form_order').append('<input type="hidden" name="order['+ i +'][Наименование]" value="'+ detailname +'">');
-        $('.form_order').append('<input type="hidden" name="order['+ i +'][Количество]" value="'+ detailcol +'">');
-        $('.form_order').append('<input type="hidden" name="order['+ i +'][Описание]" value="'+ detailarea +'">');
-        //$('.form_order').append('<input type="hidden" name="order['+ i +'][Список файлов]" value="'+ filez +'">');
-        for (var v = 0; v < name_file.length; ++v) {
-            del_file.push(name_file[v]);
-            $('.form_order').append('<input type="hidden" name="order['+ i +'][Список файлов]" value="'+ name_file[v] +'">');
-        }
-        i = i + 1;
-        name_file = [];
-        $('#detailname').val("");
-        $('#detailcol').val("");
-        $('#detailarea').val("");
+
+        addListingEl(0,'Залупа', 20, 'zalupa', 'file');
+
+        //$('.view_el').append('<div class="new_el" id="IMG'+ file.size +'f">');
+        console.log(ListingEl);
+        console.log("Добавить деталь");
     });
-
-
-        $("#addImages").change(function(){ // Выполняем функцию после выбора файлов
-             // Создаем массив
-            filez = "";
-
-            for(var i = 0; i < $(this).get(0).files.length; ++i) { // Запускаем цикл и перебираем все файлы
-
-                name_file.push($(this).get(0).files[i].name); // Добавляем имена файлов в массив
-            }
-            for(var i = 0; i < del_file.length; ++i) {
-                for (var v = 0; v < name_file.length; ++v) {
-                    if (del_file[i] == name_file[v]) {
-                        alert(del_file[i] + name_file[v]);
-                        var index = name_file.indexOf(name_file[v]);
-                        alert(index);
-                        if (index > -1) {
-                            name_file.splice(index, 1);
-                        }
-                    }
-                }
-            }
-            //filez = JSON.parse(name_file);
-            for (var i = 0; i < name_file.length; ++i) {
-                filez = filez + name_file[i] + " ";
-            }
-            console.log(name_file); // Выводим список имен в id="result", разделенных запятой
-            console.log(filez);
-        });
 
     $('.delete_all_detail').on('click', function () {
-
-        alert('Удалить');
+        console.log("Удалить выделенные детали");
     });
 
+    $('.new_change_el').on('click', function () {
+        console.log("Редактировать деталь");
+    });
+
+    $('.new_del_el').on('click', function () {
+        console.log("Удалить деталь");
+    });
 });

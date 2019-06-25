@@ -7,9 +7,9 @@
 	<link rel="stylesheet" href="<?php echo MAIN_CSS_PATH;?>index.css">	
 	<link rel="stylesheet" href="<?php echo MAIN_CSS_PATH;?>contact.css">	
 	<link rel="stylesheet" href="<?php echo MAIN_CSS_PATH;?>order.css">
+    <link rel="stylesheet" href="<?php echo MAIN_CSS_PATH;?>shop.css">
 </head>
 <body>
-<div class="cForm_button"><img src="<?php echo MAIN_IMG_PATH; ?>phone.svg" alt=""></div>
 <div class="main_block">
 	<div class="main_menu">
 		<ul>
