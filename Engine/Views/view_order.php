@@ -34,7 +34,7 @@
                 <input type="file" name="pictures[]" id="addImages" multiple="true" >
             </label>
         </div>
-        <div class="new_files_el prewiew_files_el">
+        <div class="prewiew_files">
 
         </div>
         <div class="detail">
